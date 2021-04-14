@@ -7,10 +7,15 @@ import it.polito.tdp.anagrammi.db.AnagrammaDAO;
 
 public class Model {
 	
-	Set<String> risultato = new HashSet<>();
-	AnagrammaDAO anagrammaDao = new AnagrammaDAO();
+	Set<String> risultato;
+	AnagrammaDAO anagrammaDao;
+	
+	public Model() {
+		anagrammaDao = new AnagrammaDAO();
+	}
 	
 	public Set<String> getSoluzione(String parola){
+		risultato = new HashSet<>();
 		if(anagrammaDao.isCorrect(parola)) {
 			permuta("", 0, parola);
 			//System.out.println(risultato);
@@ -20,10 +25,6 @@ public class Model {
 		
 	}
 	
-	public void clearList() {
-		risultato.clear();
-	}
-
 	public void permuta(String parziale, Integer livello, String residue) {
 		if(residue.length() == 0) {
 			risultato.add(parziale);

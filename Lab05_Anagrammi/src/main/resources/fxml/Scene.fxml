@@ -81,6 +81,15 @@
                   <Insets />
                </VBox.margin>
             </HBox>
+            <HBox>
+               <children>
+                  <Label fx:id="lblTime">
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>

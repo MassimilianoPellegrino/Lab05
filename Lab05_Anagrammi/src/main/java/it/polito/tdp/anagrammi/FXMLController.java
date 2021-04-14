@@ -9,6 +9,7 @@ import it.polito.tdp.anagrammi.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -24,6 +25,9 @@ public class FXMLController {
     @FXML
     private URL location;
 
+    @FXML
+    private Label lblTime;
+    
     @FXML
     private TextField txtParola;
 
@@ -45,14 +49,16 @@ public class FXMLController {
     	this.txtErrati.clear();
     	try{
     		String parola = this.txtParola.getText();
+    		long in = System.currentTimeMillis();
     		Set<String> soluzione = model.getSoluzione(parola);
+    		long fin = System.currentTimeMillis();
+    		this.lblTime.setText(fin-in+"ms");
         	for(String s: soluzione) {
         		if(aDao.isCorrect(s))
         			this.txtCorretti.appendText(s+"\n");
         		else
         			this.txtErrati.appendText(s+"\n");
         	}
-        	model.clearList();
     	}catch(NullPointerException e) {
     		this.txtCorretti.appendText("Inserire una parola valida da anagrammare");
     	}
