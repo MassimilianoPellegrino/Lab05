@@ -14,6 +14,10 @@ public class Model {
 		anagrammaDao = new AnagrammaDAO();
 	}
 	
+	public boolean isCorrect(String anagramma) {
+		return this.anagrammaDao.isCorrect(anagramma);
+	}
+	
 	public Set<String> getSoluzione(String parola){
 		risultato = new HashSet<>();
 		if(anagrammaDao.isCorrect(parola)) {

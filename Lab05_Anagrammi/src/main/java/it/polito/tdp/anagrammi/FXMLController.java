@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import it.polito.tdp.anagrammi.db.AnagrammaDAO;
 import it.polito.tdp.anagrammi.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +15,6 @@ import javafx.scene.control.TextField;
 public class FXMLController {
 
 	private Model model;
-	
-	AnagrammaDAO aDao = new AnagrammaDAO();
 	
     @FXML
     private ResourceBundle resources;
@@ -51,14 +48,14 @@ public class FXMLController {
     		String parola = this.txtParola.getText();
     		long in = System.currentTimeMillis();
     		Set<String> soluzione = model.getSoluzione(parola);
-    		long fin = System.currentTimeMillis();
-    		this.lblTime.setText(fin-in+"ms");
         	for(String s: soluzione) {
-        		if(aDao.isCorrect(s))
+        		if(model.isCorrect(s))
         			this.txtCorretti.appendText(s+"\n");
         		else
         			this.txtErrati.appendText(s+"\n");
         	}
+        	long fin = System.currentTimeMillis();
+    		this.lblTime.setText(fin-in+"ms");
     	}catch(NullPointerException e) {
     		this.txtCorretti.appendText("Inserire una parola valida da anagrammare");
     	}
