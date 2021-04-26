@@ -44,6 +44,7 @@ public class FXMLController {
     void doCalcola(ActionEvent event) {
     	this.txtCorretti.clear();
     	this.txtErrati.clear();
+    	this.lblTime.setText("");
     	try{
     		String parola = this.txtParola.getText();
     		long in = System.currentTimeMillis();
@@ -68,6 +69,7 @@ public class FXMLController {
     	this.txtParola.clear();
     	this.txtCorretti.clear();
     	this.txtErrati.clear();
+    	this.lblTime.setText("");
     }
 
     @FXML
